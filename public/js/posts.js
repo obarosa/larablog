@@ -9,9 +9,9 @@ btnLike.forEach(element => {
         axios.post('/like',{
             postId,
         }).then(function(response){
-            console.log(response);
+            // console.log(response);
         }).catch(function(error){
-            console.log(error);
+            // console.log(error);
         })
     })
 

@@ -35,20 +35,20 @@ class PostController extends Controller
 
     public function like(Request $request)
     {
-
-        if(Like::find($request->get('postId')) && Like::find(Auth::id()) ){
-            $like = Like::find($request->get('postId'));
-            $like->user_id = Auth::id();
-            $like->toggleLike();
-            $like->save();
-        }else{
-            $like = new Like();
-            $like->user_id = Auth::id();
+        // Check if user already like the post
+        $userLikedPost = Like::where('user_id', auth()->user()->id)
+            ->where('post_id', $request->get('postId'))
+            ->first();
+        if ($userLikedPost) {
+            // If user have like, change boolean
+            $userLikedPost->toggleLike()->save();
+        } else {
+            // If user dont have a like on post, add like
+            $like = new Like;
+            $like->user_id = auth()->user()->id;
             $like->post_id = $request->get('postId');
-            $like->like=1;
+            $like->like = 1;
             $like->save();
         }
-
     }
-
 }

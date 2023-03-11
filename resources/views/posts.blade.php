@@ -40,7 +40,7 @@
                                         </a>
                                         <span class="col float-end m-auto">
                                             <i class="fa-solid fa-thumbs-up float-end align-center" id="postLikeButton"
-                                                idPost={{ $post->id }} style="cursor: pointer;"></i>
+                                                idPost={{ $post->id }} style="cursor: pointer; color:green"></i>
                                         </span>
                                     </div>
                                 </div>
